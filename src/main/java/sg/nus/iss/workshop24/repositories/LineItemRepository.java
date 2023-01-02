@@ -13,6 +13,7 @@ import sg.nus.iss.workshop24.models.OrderDetails;
 public class LineItemRepository {
         @Autowired
         private JdbcTemplate template;
+        private Queries queries; //not needed under normal circumstance
 
        public void addLineItems(OrderDetails orderDetails){
         addLineItems(orderDetails.getLineItems(), orderDetails.getOrderId());
@@ -30,7 +31,7 @@ public class LineItemRepository {
                 .toList();
 
         // Batch update
-        template.batchUpdate(SQL_INSERT_LINE_ITEM, data);
+        template.batchUpdate(queries.SQL_INSERT_LINE_ITEM, data);//queries model call not needed under normal circumstance due to jdbc template
     }
 }
 
