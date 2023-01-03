@@ -30,9 +30,10 @@ public class OrderService {
 
         // Create the purchaseOrder
         odRepo.insertOrderDetails(od);
-        System.out.printf(">>>> order quantity: %s\n", od.getLineItems().size());
+        System.out.printf(">>>> order quantity: %s\n", od.getLineItems().size()); //check
         if (od.getLineItems().size() > 5)
             throw new OrderException("Cannot order more than 5 items");
+
         // Create the associated line items
         lineRepo.addLineItems(od.getLineItems(), orderId);
 
